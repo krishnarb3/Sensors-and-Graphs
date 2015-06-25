@@ -1,37 +1,40 @@
 package com.dev.noob.pro.rb.spidertask4;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity implements SensorEventListener{
-    TextView textview,textview2,textview3;
-    Sensor accelerometer,gyrosensor,proximity;
-    SensorManager sensorManager,sensorManager2,sensorManager3;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
+import android.os.Handler;
+
+
+public class MainActivity extends ActionBarActivity{
+    ImageView accelerometer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textview = (TextView)findViewById(R.id.textview);
-        textview2 = (TextView)findViewById(R.id.textview2);
-        textview3 = (TextView)findViewById(R.id.textview3);
-        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        sensorManager2 = (SensorManager)getSystemService(SENSOR_SERVICE);
-        sensorManager3 = (SensorManager)getSystemService(SENSOR_SERVICE);
-        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        gyrosensor= sensorManager2.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-        proximity= sensorManager3.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        sensorManager.registerListener(this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager2.registerListener(this,gyrosensor,SensorManager.SENSOR_DELAY_NORMAL);
-        sensorManager3.registerListener(this,proximity,SensorManager.SENSOR_DELAY_NORMAL);
+        accelerometer = (ImageView)findViewById(R.id.imageView);
+        accelerometer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,Accelerometer.class);
+                startActivity(i);
+            }
+        });
 
     }
 
@@ -58,19 +61,5 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        Sensor sensor = event.sensor;
-        if(sensor.getType()==Sensor.TYPE_ACCELEROMETER)
-        textview.setText("X : "+event.values[0]+"\nY : "+event.values[1]+"\nZ : "+event.values[2]);
-        else if(sensor.getType()==Sensor.TYPE_GYROSCOPE)
-        textview2.setText(""+event.values[0]+"\n"+event.values[1]+"\n"+event.values[2]);
-        else if(sensor.getType()==Sensor.TYPE_PROXIMITY)
-        textview3.setText(""+event.values[0]);
-    }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
 }
