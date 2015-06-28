@@ -1,5 +1,6 @@
 package com.dev.noob.pro.rb.spidertask4;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,6 +11,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
@@ -20,6 +23,7 @@ public class Accelerometer extends ActionBarActivity implements SensorEventListe
     Integer x=0,l=0,t=500;
     TextView textview;
     Sensor accelerometer;
+    Button button;
     SensorManager sensorManager;
     GraphView graph;
     long time;
@@ -36,6 +40,14 @@ public class Accelerometer extends ActionBarActivity implements SensorEventListe
         graph.getViewport().setMaxX(30);
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
+        button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Accelerometer.this,animatedball.class);
+                startActivity(intent);
+            }
+        });
         //graph.getViewport().setMaxX(5);
         //graphSeries.setDrawDataPoints(true);
         //graphSeries.setDataPointsRadius(10);

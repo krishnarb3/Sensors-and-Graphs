@@ -19,6 +19,32 @@
         <activity
             android:name=".Accelerometer"
             android:label="@string/title_activity_accelerometer"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.noob.pro.rb.spidertask4.MainActivity" />
+        </activity>
+        <activity
+            android:name=".gyrosensor"
+            android:label="@string/title_activity_gyrosensor"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.noob.pro.rb.spidertask4.MainActivity" />
+        </activity>
+        <activity
+            android:name=".animatedball"
+            android:label="@string/title_activity_animatedball"
+            android:parentActivityName=".Accelerometer" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dev.noob.pro.rb.spidertask4.Accelerometer" />
+        </activity>
+        <activity
+            android:name=".proximity"
+            android:label="@string/title_activity_proximity"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
